@@ -1,0 +1,13 @@
+{
+  "name": "habaki-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Habaki industrial real estate — GitHub Pages demo",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/catalog.test.mjs"
+  }
+}

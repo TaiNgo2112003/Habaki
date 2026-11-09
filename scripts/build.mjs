@@ -1,0 +1,13 @@
+import {mkdir,cp,rm,readFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {join} from 'node:path';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const output=join(root,'dist');
+await rm(output,{recursive:true,force:true});
+await mkdir(output,{recursive:true});
+const files=['index.html','styles.css','app.js','catalog.js','robots.txt','.nojekyll'];
+for(const file of files)await cp(join(root,file),join(output,file));
+await cp(join(root,'assets'),join(output,'assets'),{recursive:true});
+const html=await readFile(join(output,'index.html'),'utf8');
+if(!html.includes('lang="vi"')||!html.includes('id="bang-hang"'))throw Error('Invalid demo output');
+console.log('Built Habaki demo into dist/ (static, no dependencies).');
